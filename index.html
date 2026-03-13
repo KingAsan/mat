@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MathSprint: тренажер математических задач</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Sora:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-shape bg-shape-1" aria-hidden="true"></div>
+  <div class="bg-shape bg-shape-2" aria-hidden="true"></div>
+  <main class="app">
+    <header class="hero card fade-in">
+      <p class="eyebrow">MathSprint</p>
+      <h1>Тренировка решения математических задач</h1>
+      <p class="hero-text">
+        Выбирайте тему и уровень сложности, решайте серию задач и отслеживайте свой прогресс.
+      </p>
+    </header>
+
+    <section class="card settings fade-in delay-1">
+      <h2>Параметры тренировки</h2>
+      <form id="session-form">
+        <label for="topic">Тема</label>
+        <select id="topic" name="topic">
+          <option value="mixed">Смешанный режим</option>
+          <option value="arithmetic">Арифметика</option>
+          <option value="fractions">Дроби</option>
+          <option value="equations">Уравнения</option>
+          <option value="percentages">Проценты</option>
+        </select>
+
+        <label for="difficulty">Сложность</label>
+        <select id="difficulty" name="difficulty">
+          <option value="easy">Легкий</option>
+          <option value="medium" selected>Средний</option>
+          <option value="hard">Сложный</option>
+        </select>
+
+        <label for="task-count">Количество задач</label>
+        <input id="task-count" name="task-count" type="number" min="5" max="50" value="10" />
+
+        <button type="submit" class="btn btn-primary">Начать тренировку</button>
+      </form>
+    </section>
+
+    <section id="trainer" class="card trainer hidden fade-in delay-2">
+      <div class="session-head">
+        <div class="chip">Задача <span id="task-index">1</span>/<span id="task-total">10</span></div>
+        <div class="chip">Очки: <span id="score">0</span></div>
+        <div class="chip">Серия: <span id="streak">0</span></div>
+        <div class="chip">Время: <span id="timer">00:00</span></div>
+      </div>
+
+      <div class="progress-track" aria-hidden="true">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+
+      <article class="problem-card">
+        <p class="problem-label">Текущая задача</p>
+        <p id="problem-text" class="problem-text">Нажмите «Начать тренировку».</p>
+      </article>
+
+      <div class="answer-row">
+        <label for="answer-input" class="sr-only">Ваш ответ</label>
+        <input id="answer-input" type="text" placeholder="Введите ответ (например, 12 или 3/4)" autocomplete="off" />
+        <button id="check-btn" type="button" class="btn btn-primary">Проверить</button>
+        <button id="hint-btn" type="button" class="btn btn-secondary">Подсказка</button>
+        <button id="skip-btn" type="button" class="btn btn-secondary">Пропустить</button>
+      </div>
+
+      <p id="feedback" class="feedback" aria-live="polite"></p>
+      <p id="hint-text" class="hint-text" aria-live="polite"></p>
+
+      <section class="mini-stats">
+        <div>
+          <p class="mini-label">Правильно</p>
+          <p id="correct-count" class="mini-value">0</p>
+        </div>
+        <div>
+          <p class="mini-label">Ошибки</p>
+          <p id="wrong-count" class="mini-value">0</p>
+        </div>
+        <div>
+          <p class="mini-label">Пропущено</p>
+          <p id="skipped-count" class="mini-value">0</p>
+        </div>
+        <div>
+          <p class="mini-label">Подсказки</p>
+          <p id="hints-count" class="mini-value">0</p>
+        </div>
+      </section>
+    </section>
+
+    <section id="summary" class="card summary hidden fade-in">
+      <h2>Результаты тренировки</h2>
+      <div class="summary-grid">
+        <div>
+          <p class="mini-label">Очки</p>
+          <p id="summary-score" class="summary-value">0</p>
+        </div>
+        <div>
+          <p class="mini-label">Точность</p>
+          <p id="summary-accuracy" class="summary-value">0%</p>
+        </div>
+        <div>
+          <p class="mini-label">Лучший результат</p>
+          <p id="summary-best" class="summary-value">0</p>
+        </div>
+        <div>
+          <p class="mini-label">Время тренировки</p>
+          <p id="summary-time" class="summary-value">00:00</p>
+        </div>
+      </div>
+      <p id="summary-note" class="summary-note"></p>
+      <button id="restart-btn" type="button" class="btn btn-primary">Новая тренировка</button>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
